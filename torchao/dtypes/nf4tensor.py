@@ -801,7 +801,7 @@ class NF4Tensor(torch.Tensor):
             pass
 
         with torch._C.DisableTorchFunctionSubclass():
-            return func(*args, **kwargs)
+            return super().__torch_function__(func, types, *args, **kwargs)
 
 
     def fsdp_pre_all_gather(self, mesh: DeviceMesh) -> Tuple[Tuple[torch.Tensor, ...], Any]:
